@@ -1,5 +1,11 @@
 [gd_scene format=3 uid="uid://c48ism0vxmywd"]
 
+[ext_resource type="PackedScene" uid="uid://dsqesqxsl6522" path="res://Planet/planet.tscn" id="1_fyr3e"]
+[ext_resource type="Script" uid="uid://qjhx7gue4ffu" path="res://MainScene/main_scene.gd" id="1_qjv46"]
+
 [node name="MainScene" type="Node2D" unique_id=1672290213]
+script = ExtResource("1_qjv46")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1787461015]
+
+[node name="Planet" parent="." unique_id=332292861 instance=ExtResource("1_fyr3e")]

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dsqesqxsl6522"]
+
+[ext_resource type="Texture2D" uid="uid://d36bxrlraawxy" path="res://icon.svg" id="1_06kw6"]
+[ext_resource type="Script" uid="uid://ba5r65102scm1" path="res://Planet/planet.gd" id="1_m2dqj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_06kw6"]
+radius = 65.03076
+
+[node name="Planet" type="Node2D" unique_id=1474919728]
+script = ExtResource("1_m2dqj")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1217238956]
+texture = ExtResource("1_06kw6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=384827553]
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1711436621]
+shape = SubResource("CircleShape2D_06kw6")
+
+[connection signal="input_event" from="StaticBody2D" to="." method="_on_static_body_2d_input_event"]
+[connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
+[connection signal="mouse_exited" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_exited"]
