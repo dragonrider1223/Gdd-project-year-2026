@@ -13,6 +13,7 @@ func _on_static_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx
 	if  event is InputEventMouseButton and event.pressed:
 		PlanetResourceHolder.stone+=1;
 		print(PlanetResourceHolder.stone)
+		
 
 func _process(delta: float) -> void:
 	image.scale = lerp(initialImageScale,targetImageScale,currentImageScaleTime)

@@ -7,5 +7,7 @@
 script = ExtResource("1_qjv46")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1787461015]
+modulate = Color(0, 0, 0, 1)
+zoom = Vector2(0.1, 0.1)
 
 [node name="Planet" parent="." unique_id=332292861 instance=ExtResource("1_fyr3e")]
