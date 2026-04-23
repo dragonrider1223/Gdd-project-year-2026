@@ -1,13 +1,9 @@
 shader_type canvas_item;
 
-uniform float pixelCount = 16;
-
-void vertex() {
-	
-}
+uniform float pixelCount : hint_range(0.0,128.0) = 16;
 
 void fragment() {
-	;
+	
 	vec2 p_uv = UV-0.5;
 	p_uv *= pixelCount;
 	p_uv = floor(p_uv);
@@ -16,6 +12,7 @@ void fragment() {
 	p_uv += 1.0/pixelCount/2.0;
 	COLOR = texture(TEXTURE,p_uv);
 }
+
 
 //void light() {
 //	// Called for every pixel for every light affecting the CanvasItem.

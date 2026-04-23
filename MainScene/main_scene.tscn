@@ -2,12 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://dsqesqxsl6522" path="res://Planet/planet.tscn" id="1_fyr3e"]
 [ext_resource type="Script" uid="uid://qjhx7gue4ffu" path="res://MainScene/main_scene.gd" id="1_qjv46"]
+[ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="2_25u3m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4p44"]
+shader = ExtResource("2_25u3m")
+shader_parameter/pixelCount = 16.0
 
 [node name="MainScene" type="Node2D" unique_id=1672290213]
 script = ExtResource("1_qjv46")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1787461015]
 modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_r4p44")
 zoom = Vector2(0.1, 0.1)
 
 [node name="Planet" parent="." unique_id=332292861 instance=ExtResource("1_fyr3e")]

@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	image.scale = lerp(initialImageScale,targetImageScale,currentImageScaleTime)
 	currentImageScaleTime = minf(currentImageScaleTime+(delta*(1/imageScaleTime)),1)
 	image.rotate(rotateAmount*delta)
+	image.material.set_shader_parameter("pixelCount",(16*image.scale.x));
 
 
 func _on_static_body_2d_mouse_entered() -> void:
