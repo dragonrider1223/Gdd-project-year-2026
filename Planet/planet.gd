@@ -1,6 +1,15 @@
 extends Node2D
 
-@onready var image = $Icon
+@onready var image = $ImageHolder/Icon
+@onready var imageHolder = $ImageHolder
+
+#imageHolder shake and grow
+var imageHolderRot:float = 0.0;
+var shakeCount = -1;
+var targetRot:float = 0.5;
+var imageShakeTime:float = 0.1;
+var currentImageShakeTime:float = 1;
+var scaleMult:float = 0.1;
 
 #image scaling vars
 var initialImageScale = Vector2(1,1);
@@ -13,10 +22,22 @@ func _on_static_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx
 	if  event is InputEventMouseButton and event.pressed:
 		PlanetResourceHolder.stone+=1;
 		print(PlanetResourceHolder.stone)
-		
+		shakeCount = 3;
 
 func _process(delta: float) -> void:
-	image.scale = lerp(initialImageScale,targetImageScale,currentImageScaleTime)
+	if shakeCount>=0:
+		currentImageShakeTime = minf(currentImageShakeTime+(delta*(1/imageShakeTime)),1)
+		if(shakeCount>0):
+			imageHolder.rotation = lerp(imageHolderRot,targetRot,currentImageShakeTime)
+		else:
+			imageHolder.rotation = lerp(imageHolderRot,0.0,currentImageShakeTime)
+		if(currentImageShakeTime>=1):
+			shakeCount-=1;
+			initialImageScale = image.scale
+			currentImageShakeTime = 0
+			imageHolderRot = targetRot
+			targetRot*=-1
+	image.scale = lerp(initialImageScale,targetImageScale+Vector2(maxf(shakeCount*scaleMult,0),maxf(shakeCount*scaleMult,0)),currentImageScaleTime)
 	currentImageScaleTime = minf(currentImageScaleTime+(delta*(1/imageScaleTime)),1)
 	image.rotate(rotateAmount*delta)
 	image.material.set_shader_parameter("pixelCount",(16*image.scale.x));

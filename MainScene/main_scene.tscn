@@ -11,6 +11,24 @@ shader_parameter/pixelCount = 16.0
 [node name="MainScene" type="Node2D" unique_id=1672290213]
 script = ExtResource("1_qjv46")
 
+[node name="BG" type="CanvasLayer" parent="." unique_id=2067117689]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=597401084]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5870.0
+offset_top = -3359.0
+offset_right = -6022.0
+offset_bottom = -3007.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(15, 15)
+mouse_filter = 2
+color = Color(0.003132459, 0.0031439022, 0.077333175, 1)
+metadata/_edit_group_ = true
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1787461015]
 modulate = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_r4p44")
