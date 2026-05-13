@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dsqesqxsl6522" path="res://Planet/planet.tscn" id="1_fyr3e"]
 [ext_resource type="Script" uid="uid://qjhx7gue4ffu" path="res://MainScene/main_scene.gd" id="1_qjv46"]
 [ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="2_25u3m"]
+[ext_resource type="PackedScene" uid="uid://dig00jfs6om78" path="res://UI/Canvas.tscn" id="3_r4p44"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r4p44"]
 shader = ExtResource("2_25u3m")
@@ -33,5 +34,10 @@ metadata/_edit_group_ = true
 modulate = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_r4p44")
 zoom = Vector2(0.1, 0.1)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1911830640]
+layer = 100
+
+[node name="Canvas" parent="UI" unique_id=666630035 instance=ExtResource("3_r4p44")]
 
 [node name="Planet" parent="." unique_id=332292861 instance=ExtResource("1_fyr3e")]

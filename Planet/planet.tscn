@@ -10,7 +10,7 @@ radius = 759.2378
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b00i1"]
 shader = ExtResource("2_0v15i")
-shader_parameter/pixelCount = 32.0
+shader_parameter/pixelCount = 16.00000076
 
 [node name="Planet" type="Node2D" unique_id=1474919728]
 script = ExtResource("1_m2dqj")
@@ -27,8 +27,14 @@ shape = SubResource("CircleShape2D_06kw6")
 material = SubResource("ShaderMaterial_b00i1")
 texture = ExtResource("3_0v15i")
 
+[node name="Building2" parent="ImageHolder/Icon" unique_id=1408095974 instance=ExtResource("4_b00i1")]
+position = Vector2(550, -550)
+rotation = 0.7853982
+menuType = 2
+
 [node name="Building" parent="ImageHolder/Icon" unique_id=506788051 instance=ExtResource("4_b00i1")]
 position = Vector2(0, -826)
+menuType = 1
 
 [connection signal="input_event" from="StaticBody2D" to="." method="_on_static_body_2d_input_event"]
 [connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
