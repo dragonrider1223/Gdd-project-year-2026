@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float pixelCount : hint_range(0.0,128.0) = 16;
+uniform float pixelCount : hint_range(0.0,256.0) = 16;
 
 void fragment() {
 	

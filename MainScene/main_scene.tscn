@@ -4,6 +4,43 @@
 [ext_resource type="Script" uid="uid://qjhx7gue4ffu" path="res://MainScene/main_scene.gd" id="1_qjv46"]
 [ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="2_25u3m"]
 [ext_resource type="PackedScene" uid="uid://dig00jfs6om78" path="res://UI/Canvas.tscn" id="3_r4p44"]
+[ext_resource type="Texture2D" uid="uid://n7hn8jixpq6d" path="res://MainScene/star (1).png" id="5_ga7gg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ga7gg"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_ga7gg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_25os6"]
+curve = SubResource("Curve_ga7gg")
+
+[sub_resource type="Curve" id="Curve_25os6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2848485, 1), 0.0, 0.0, 0, 0, Vector2(0.7939395, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1lkik"]
+curve = SubResource("Curve_25os6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_25os6"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 600.0
+emission_ring_radius = 600.0
+emission_ring_inner_radius = 150.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_1lkik")
+alpha_curve = SubResource("CurveTexture_25os6")
+anim_speed_min = 0.099999994
+anim_speed_max = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r4p44"]
 shader = ExtResource("2_25u3m")
@@ -19,16 +56,25 @@ layer = -5
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -5870.0
-offset_top = -3359.0
-offset_right = -6022.0
-offset_bottom = -3007.0
+offset_left = -28.999998
+offset_top = -3.9999962
+offset_right = -1101.3334
+offset_bottom = -607.13336
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(15, 15)
 mouse_filter = 2
 color = Color(0.003132459, 0.0031439022, 0.077333175, 1)
 metadata/_edit_group_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="BG" unique_id=753034818]
+material = SubResource("CanvasItemMaterial_ga7gg")
+position = Vector2(592, 344)
+amount = 32
+texture = ExtResource("5_ga7gg")
+lifetime = 5.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_25os6")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1787461015]
 modulate = Color(0, 0, 0, 1)

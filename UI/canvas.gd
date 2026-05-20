@@ -3,15 +3,17 @@ extends Control
 @onready var stoneCounter = $StoneCpunt
 @onready var menHolder = $MenCounter
 
-@onready var houseButton = $MenuHolder/HouseMenu/HouseButton
-@onready var mineButton = $MenuHolder/MineMenu/MineButton
+@onready var houseButton = $MenuHolder/TabContainer/HouseMenu/HouseButton
+@onready var mineButton = $MenuHolder/TabContainer/MineMenu/MineButton
 
-@onready var menus:Array = [$MenuHolder/HouseMenu,$MenuHolder/MineMenu] 
+@onready var menus:Array = [$MenuHolder/TabContainer/HouseMenu,$MenuHolder/TabContainer/MineMenu] 
 
 var currentState = PlanetResourceHolder.menuState
 
 var  houseCost :int = 10
 var  mineCost :int = 100
+
+# TODO: add menu buttons to not have to click the house / change to a tab system
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,7 +23,9 @@ func _process(delta: float) -> void:
 		currentState =PlanetResourceHolder.menuState
 		if(currentState==PlanetResourceHolder.Menu.NONE):
 			$MenuHolder.visible = false;
+			$MenuOpenButton.visible = true;
 		else:
+			$MenuOpenButton.visible = false;
 			$MenuHolder.visible = true;
 			for i in menus:
 				i.visible = false;
@@ -55,7 +59,7 @@ func _on_fix_mine_button_button_down() -> void:
 			PlanetResourceHolder.stone-= mineCost/2
 			PlanetResourceHolder.men+=PlanetResourceHolder.menPerMine*3
 			PlanetResourceHolder.mineFixed = true
-			$MenuHolder/MineMenu/FixMineWall.visible = false;
+			$MenuHolder/TabContainer/MineMenu/FixMineWall.visible = false;
 			
 
 func _on_fix_house_button_button_down() -> void:
@@ -63,7 +67,7 @@ func _on_fix_house_button_button_down() -> void:
 		if PlanetResourceHolder.stone >= houseCost/2:
 			PlanetResourceHolder.stone-= houseCost/2
 			$MenCounter.visible = true
-			$MenuHolder/HouseMenu/FixeHouseWall.visible = false;
+			$MenuHolder/TabContainer/HouseMenu/FixeHouseWall.visible = false;
 
 func setCosts() ->void:
 	houseCost = roundi(PlanetResourceHolder.houseCost+pow((PlanetResourceHolder.houseCost),1+(PlanetResourceHolder.houseCostIncrease*(PlanetResourceHolder.house.buildingCount-1))))
@@ -74,3 +78,7 @@ func setCosts() ->void:
 
 func _on_close_button_pressed() -> void:
 	PlanetResourceHolder.menuState = PlanetResourceHolder.Menu.NONE
+
+
+func _on_menu_open_button_pressed() -> void:
+	PlanetResourceHolder.menuState = PlanetResourceHolder.Menu.HOUSE;

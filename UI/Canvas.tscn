@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dig00jfs6om78"]
 
 [ext_resource type="Script" uid="uid://cfad5box8v352" path="res://UI/canvas.gd" id="1_gleao"]
+[ext_resource type="Texture2D" uid="uid://c1plckurocgrs" path="res://chain.png" id="2_c2mgu"]
 
 [node name="Canvas" type="Control" unique_id=666630035]
 layout_mode = 3
@@ -17,67 +18,129 @@ layout_mode = 0
 offset_right = 370.0
 offset_bottom = 648.0
 
-[node name="HouseMenu" type="Control" parent="MenuHolder" unique_id=1053985501]
-anchors_preset = 0
-
-[node name="HouseButton" type="Button" parent="MenuHolder/HouseMenu" unique_id=870301996]
+[node name="TabContainer" type="TabContainer" parent="MenuHolder" unique_id=939506333]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 93.0
 offset_right = 225.0
-offset_bottom = 147.0
+offset_bottom = 40.0
+current_tab = 1
+clip_tabs = false
+
+[node name="HouseMenu" type="Control" parent="MenuHolder/TabContainer" unique_id=1053985501]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HouseButton" type="Button" parent="MenuHolder/TabContainer/HouseMenu" unique_id=870301996]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 197.0
+offset_right = 234.0
+offset_bottom = 251.0
 text = "BUY HOUSE
 20.0"
 
-[node name="FixeHouseWall" type="Panel" parent="MenuHolder/HouseMenu" unique_id=1309315093]
+[node name="FixeHouseWall" type="Panel" parent="MenuHolder/TabContainer/HouseMenu" unique_id=1309315093]
 layout_mode = 0
 offset_right = 368.0
 offset_bottom = 645.0
 
-[node name="FixHouseButton" type="Button" parent="MenuHolder/HouseMenu/FixeHouseWall" unique_id=386977412]
+[node name="TextureRect" type="TextureRect" parent="MenuHolder/TabContainer/HouseMenu/FixeHouseWall" unique_id=1833222606]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 255.0
-offset_right = 225.0
-offset_bottom = 309.0
+offset_left = -24.0
+offset_top = 188.0
+offset_right = 1289.3333
+offset_bottom = 1621.3333
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_c2mgu")
+
+[node name="FixHouseButton" type="Button" parent="MenuHolder/TabContainer/HouseMenu/FixeHouseWall" unique_id=386977412]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 373.0
+offset_right = 234.0
+offset_bottom = 427.0
 text = "FIX HOUSE
 5 stone"
 
-[node name="MineMenu" type="Control" parent="MenuHolder" unique_id=103736440]
-visible = false
-anchors_preset = 0
-
-[node name="MineButton" type="Button" parent="MenuHolder/MineMenu" unique_id=426789423]
+[node name="Description" type="Label" parent="MenuHolder/TabContainer/HouseMenu" unique_id=629916846]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
 layout_mode = 0
-offset_left = 126.0
-offset_top = 93.0
-offset_right = 225.0
-offset_bottom = 147.0
+offset_left = 11.0
+offset_top = 67.0
+offset_right = 360.0
+offset_bottom = 194.0
+text = "--------------------------Housing---------------------------
+Build houses to gain workers
+workers are needed to operate advanced
+buildings.
+------------------------------------------------------------------"
+horizontal_alignment = 1
+
+[node name="MineMenu" type="Control" parent="MenuHolder/TabContainer" unique_id=103736440]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MineButton" type="Button" parent="MenuHolder/TabContainer/MineMenu" unique_id=426789423]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 200.0
+offset_right = 232.0
+offset_bottom = 254.0
 text = "BUY MINE
 20.0"
 
-[node name="FixMineWall" type="Panel" parent="MenuHolder/MineMenu" unique_id=467676414]
+[node name="FixMineWall" type="Panel" parent="MenuHolder/TabContainer/MineMenu" unique_id=467676414]
 layout_mode = 0
 offset_right = 368.0
 offset_bottom = 645.0
 
-[node name="FixMineButton" type="Button" parent="MenuHolder/MineMenu/FixMineWall" unique_id=106697619]
+[node name="TextureRect" type="TextureRect" parent="MenuHolder/TabContainer/MineMenu/FixMineWall" unique_id=508936068]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 255.0
-offset_right = 225.0
-offset_bottom = 309.0
+offset_left = -24.0
+offset_top = 188.0
+offset_right = 1289.3333
+offset_bottom = 1621.3333
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_c2mgu")
+
+[node name="FixMineButton" type="Button" parent="MenuHolder/TabContainer/MineMenu/FixMineWall" unique_id=106697619]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 360.0
+offset_right = 233.0
+offset_bottom = 437.0
 text = "FIX MINE
 50 stone
 3 men"
 
+[node name="Description" type="Label" parent="MenuHolder/TabContainer/MineMenu" unique_id=367363739]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 67.0
+offset_right = 360.0
+offset_bottom = 194.0
+text = "----------------------------Mine-----------------------------
+Mines generate stone
+Requires workers to operate them
+------------------------------------------------------------------"
+horizontal_alignment = 1
+
 [node name="CloseButton" type="Button" parent="MenuHolder" unique_id=322053281]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 1.0
-offset_right = 366.0
-offset_bottom = 55.0
-text = "kill the menu"
+offset_left = 230.0
+offset_top = 37.0
+offset_right = 358.0
+offset_bottom = 91.0
+text = "minimize menu"
+
+[node name="MenuOpenButton" type="Button" parent="." unique_id=1651885096]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 31.0
+offset_right = 160.0
+offset_bottom = 85.0
+text = "Upgrade towers"
 
 [node name="StoneCpunt" type="Label" parent="." unique_id=1580557251]
 layout_direction = 3
@@ -100,8 +163,9 @@ offset_bottom = 47.0
 text = "0/1 Men"
 horizontal_alignment = 2
 
-[connection signal="button_down" from="MenuHolder/HouseMenu/HouseButton" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="MenuHolder/HouseMenu/FixeHouseWall/FixHouseButton" to="." method="_on_fix_house_button_button_down"]
-[connection signal="button_down" from="MenuHolder/MineMenu/MineButton" to="." method="_on_mine_button_button_down"]
-[connection signal="button_down" from="MenuHolder/MineMenu/FixMineWall/FixMineButton" to="." method="_on_fix_mine_button_button_down"]
+[connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/HouseButton" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/FixeHouseWall/FixHouseButton" to="." method="_on_fix_house_button_button_down"]
+[connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/MineButton" to="." method="_on_mine_button_button_down"]
+[connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/FixMineWall/FixMineButton" to="." method="_on_fix_mine_button_button_down"]
 [connection signal="pressed" from="MenuHolder/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="MenuOpenButton" to="." method="_on_menu_open_button_pressed"]
