@@ -55,8 +55,8 @@ func _on_mine_button_button_down() -> void:
 
 func _on_fix_mine_button_button_down() -> void:
 	if PlanetResourceHolder.mine != null:
-		if PlanetResourceHolder.stone >= mineCost/2&&(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)-PlanetResourceHolder.men>=PlanetResourceHolder.menPerMine*3:
-			PlanetResourceHolder.stone-= mineCost/2
+		if PlanetResourceHolder.stone >= mineCost&&(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)-PlanetResourceHolder.men>=PlanetResourceHolder.menPerMine*3:
+			PlanetResourceHolder.stone-= mineCost
 			PlanetResourceHolder.men+=PlanetResourceHolder.menPerMine*3
 			PlanetResourceHolder.mineFixed = true
 			$MenuHolder/TabContainer/MineMenu/FixMineWall.visible = false;

@@ -28,6 +28,7 @@ func orderBuildings():
 		blockHolder.add_child(newBlock)
 		BuildingBlocks.append(newBlock)
 		newBlock.menuType = menuType
+		newBlock.setSprite();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

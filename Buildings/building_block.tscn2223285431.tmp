@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://uusf7wo64gvd"]
+
+[ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="1_fn8ea"]
+[ext_resource type="Script" uid="uid://stlcuhsmdiqu" path="res://Buildings/building_block.gd" id="1_x5b0o"]
+[ext_resource type="Texture2D" uid="uid://d36bxrlraawxy" path="res://icon.svg" id="2_x5b0o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr4wu"]
+size = Vector2(256, 276)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7wbh"]
+shader = ExtResource("1_fn8ea")
+shader_parameter/pixelCount = 6.000000285
+
+[node name="BuildingBlock" type="Node2D" unique_id=914370485]
+script = ExtResource("1_x5b0o")
+
+[node name="Collision" type="StaticBody2D" parent="." unique_id=1565336916]
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1627572346]
+position = Vector2(0, 5.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_hr4wu")
+
+[node name="Icon" type="Sprite2D" parent="Collision" unique_id=1003352515]
+z_index = -1
+material = SubResource("ShaderMaterial_x7wbh")
+texture = ExtResource("2_x5b0o")
+
+[connection signal="input_event" from="Collision" to="." method="_on_collision_input_event"]
