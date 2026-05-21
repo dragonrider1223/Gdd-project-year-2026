@@ -39,6 +39,15 @@ offset_bottom = 251.0
 text = "BUY HOUSE
 20.0"
 
+[node name="HouseUpgradeButton" type="Button" parent="MenuHolder/TabContainer/HouseMenu" unique_id=747554898]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 286.0
+offset_right = 293.0
+offset_bottom = 340.0
+text = "UPGRADE HOUSE CAPACITY
+20.0"
+
 [node name="FixeHouseWall" type="Panel" parent="MenuHolder/TabContainer/HouseMenu" unique_id=1309315093]
 layout_mode = 0
 offset_right = 368.0
@@ -79,6 +88,15 @@ horizontal_alignment = 1
 [node name="MineMenu" type="Control" parent="MenuHolder/TabContainer" unique_id=103736440]
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="MineUpgradeButton" type="Button" parent="MenuHolder/TabContainer/MineMenu" unique_id=1210373137]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 294.0
+offset_right = 290.0
+offset_bottom = 348.0
+text = "UPGRADE MINE EFFICIENCY
+20.0"
 
 [node name="MineButton" type="Button" parent="MenuHolder/TabContainer/MineMenu" unique_id=426789423]
 layout_mode = 0
@@ -164,7 +182,9 @@ text = "occupied workers: 0/1"
 horizontal_alignment = 2
 
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/HouseButton" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/HouseUpgradeButton" to="." method="_on_house_upgrade_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/FixeHouseWall/FixHouseButton" to="." method="_on_fix_house_button_button_down"]
+[connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/MineUpgradeButton" to="." method="_on_mine_button_2_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/MineButton" to="." method="_on_mine_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/FixMineWall/FixMineButton" to="." method="_on_fix_mine_button_button_down"]
 [connection signal="pressed" from="MenuHolder/CloseButton" to="." method="_on_close_button_pressed"]
