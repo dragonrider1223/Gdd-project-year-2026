@@ -111,7 +111,7 @@ offset_right = 233.0
 offset_bottom = 437.0
 text = "FIX MINE
 50 stone
-3 men"
+3 workers"
 
 [node name="Description" type="Label" parent="MenuHolder/TabContainer/MineMenu" unique_id=367363739]
 modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
@@ -160,7 +160,7 @@ offset_left = 26.0
 offset_top = 24.0
 offset_right = 83.0
 offset_bottom = 47.0
-text = "0/1 Men"
+text = "occupied workers: 0/1"
 horizontal_alignment = 2
 
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/HouseButton" to="." method="_on_button_button_down"]

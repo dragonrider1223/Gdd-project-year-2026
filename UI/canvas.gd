@@ -18,7 +18,7 @@ var  mineCost :int = 100
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	stoneCounter.text = str(PlanetResourceHolder.stone)+" stone"
-	menHolder.text =str(PlanetResourceHolder.men)+"/"+str(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)+" Men"
+	menHolder.text ="occupied workers: "+str(PlanetResourceHolder.men)+"/"+str(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)
 	if(PlanetResourceHolder.menuState!=currentState):
 		currentState =PlanetResourceHolder.menuState
 		if(currentState==PlanetResourceHolder.Menu.NONE):
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	houseButton.text = "BUY HOUSE\n"+str(houseCost)+" stone"
-	mineButton.text = "BUY MINE\n"+str(mineCost)+" stone\n"+str(PlanetResourceHolder.menPerMine)+" men"
+	mineButton.text = "BUY MINE\n"+str(mineCost)+" stone\n"+str(PlanetResourceHolder.menPerMine)+" workers"
 	$MenuHolder.visible = false;
 
 
@@ -74,7 +74,7 @@ func setCosts() ->void:
 	houseButton.text = "BUY HOUSE\n"+str(houseCost)+" stone"
 	
 	mineCost = roundi(PlanetResourceHolder.mineCost+pow((PlanetResourceHolder.mineCost),1+(PlanetResourceHolder.mineCostIncrease*(PlanetResourceHolder.mine.buildingCount-1))))
-	mineButton.text = "BUY MINE\n"+str(mineCost)+" stone\n"+str(PlanetResourceHolder.menPerMine)+" men"
+	mineButton.text = "BUY MINE\n"+str(mineCost)+" stone\n"+str(PlanetResourceHolder.menPerMine)+" workers"
 
 func _on_close_button_pressed() -> void:
 	PlanetResourceHolder.menuState = PlanetResourceHolder.Menu.NONE
