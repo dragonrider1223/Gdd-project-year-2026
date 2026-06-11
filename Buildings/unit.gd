@@ -9,6 +9,9 @@ var targetRotation;
 @export var maxWaitTime = 5;
 
 
+@export var wiggleRoom = 0.1;
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	targetRotation = (randf()*2*PI)
@@ -18,8 +21,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(walking):
 		rotation = rotate_toward(rotation,targetRotation,speed*delta)
-		print(str(rotation)+" - "+str(targetRotation))
-		if(rotation==targetRotation||rotation==(-2*PI)+targetRotation):
+		if(rotation<0):
+			rotation = (2*PI)+rotation
+		if(rotation>2*PI):
+			rotation = rotation-(2*PI)
+		if(rotation<=targetRotation+wiggleRoom&&rotation>=targetRotation-wiggleRoom):
 			walking = false;
 			$IdleTimer.wait_time = randf_range(minWaitTime,maxWaitTime)
 			$IdleTimer.start()
