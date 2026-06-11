@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b5j03rj1dk4tu"]
+
+[ext_resource type="Texture2D" uid="uid://d36bxrlraawxy" path="res://icon.svg" id="1_6siug"]
+[ext_resource type="Script" uid="uid://dsf6vt8na0762" path="res://Buildings/unit.gd" id="1_x68ac"]
+
+[node name="Unit" type="Node2D" unique_id=670262808]
+script = ExtResource("1_x68ac")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=636522845]
+position = Vector2(0, -826)
+texture = ExtResource("1_6siug")
+
+[node name="IdleTimer" type="Timer" parent="." unique_id=124721035]
+one_shot = true
+
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

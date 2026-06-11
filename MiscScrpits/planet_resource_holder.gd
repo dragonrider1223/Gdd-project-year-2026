@@ -8,6 +8,7 @@ enum Menu
 }
 
 static var house = Menu.NONE;
+static var houseFixed = false;
 static var houseCost = 5;
 static var houseCostIncrease = 0.3;
 

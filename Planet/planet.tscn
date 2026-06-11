@@ -4,6 +4,8 @@
 [ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="2_0v15i"]
 [ext_resource type="Texture2D" uid="uid://b7eodo7e3vyhs" path="res://Planet/TempPlanet2.png" id="3_0v15i"]
 [ext_resource type="PackedScene" uid="uid://ghv83gn1qomj" path="res://Buildings/building.tscn" id="4_b00i1"]
+[ext_resource type="Script" uid="uid://b788txksrppa0" path="res://Planet/unit_holder.gd" id="5_x7wbh"]
+[ext_resource type="PackedScene" uid="uid://b5j03rj1dk4tu" path="res://Buildings/unit.tscn" id="6_pq8jx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_06kw6"]
 radius = 759.2378
@@ -35,6 +37,12 @@ menuType = 2
 [node name="Building" parent="ImageHolder/Icon" unique_id=506788051 instance=ExtResource("4_b00i1")]
 position = Vector2(0, -826)
 menuType = 1
+
+[node name="UnitHolder" type="Node2D" parent="ImageHolder/Icon" unique_id=167823365]
+script = ExtResource("5_x7wbh")
+
+[node name="Unit" parent="ImageHolder/Icon/UnitHolder" unique_id=670262808 instance=ExtResource("6_pq8jx")]
+visible = false
 
 [connection signal="input_event" from="StaticBody2D" to="." method="_on_static_body_2d_input_event"]
 [connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]

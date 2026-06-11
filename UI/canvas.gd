@@ -15,8 +15,6 @@ var  mineCost :int = 50
 var  mineUpgradeCost :int = 100
 var  houseUpgradeCost :int = 50
 
-# TODO: add menu buttons to not have to click the house / change to a tab system
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	stoneCounter.text = str(PlanetResourceHolder.stone)+" stone"
@@ -70,6 +68,7 @@ func _on_fix_house_button_button_down() -> void:
 	if PlanetResourceHolder.house != null:
 		if PlanetResourceHolder.stone >= houseCost/2:
 			PlanetResourceHolder.stone-= houseCost/2
+			PlanetResourceHolder.houseFixed = true
 			$MenCounter.visible = true
 			$MenuHolder/TabContainer/HouseMenu/FixeHouseWall.visible = false;
 
