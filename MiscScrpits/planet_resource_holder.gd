@@ -19,6 +19,7 @@ static var mineCostIncrease = 0.2;
 static var menPerMine = 1;
 static var stonePerMine = 1;
 static var timePerMine = 1;
+static var menInMine = 0;
 
 static var menuState = Menu.NONE;
 static var stone: int = 0;

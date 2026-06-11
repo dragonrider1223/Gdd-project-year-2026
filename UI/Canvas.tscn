@@ -13,6 +13,52 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_gleao")
 
+[node name="UnitMenuBG" type="Panel" parent="." unique_id=1924349806]
+layout_mode = 0
+offset_left = 787.0
+offset_right = 1155.0
+offset_bottom = 645.0
+
+[node name="UnitAlocationMenu" type="Control" parent="UnitMenuBG" unique_id=1073325312]
+anchors_preset = 0
+metadata/_tab_index = 0
+
+[node name="FixeHouseWall" type="Panel" parent="UnitMenuBG/UnitAlocationMenu" unique_id=1574358122]
+layout_mode = 0
+offset_right = 368.0
+offset_bottom = 645.0
+
+[node name="TextureRect" type="TextureRect" parent="UnitMenuBG/UnitAlocationMenu/FixeHouseWall" unique_id=1144485552]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 218.0
+offset_right = 1310.3333
+offset_bottom = 1651.3333
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_c2mgu")
+flip_h = true
+
+[node name="Description" type="Label" parent="UnitMenuBG/UnitAlocationMenu" unique_id=1839902713]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 101.0
+offset_right = 360.0
+offset_bottom = 228.0
+text = "--------------------------Workers---------------------------
+used to manage your collony
+Allocatate units to towers that require them
+------------------------------------------------------------------"
+horizontal_alignment = 1
+
+[node name="CloseUnitMenuButton" type="Button" parent="UnitMenuBG" unique_id=233368125]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 37.0
+offset_right = 140.0
+offset_bottom = 91.0
+text = "minimize menu"
+
 [node name="MenuHolder" type="Panel" parent="." unique_id=1920504955]
 layout_mode = 0
 offset_right = 370.0
@@ -128,8 +174,7 @@ offset_top = 360.0
 offset_right = 233.0
 offset_bottom = 437.0
 text = "FIX MINE
-50 stone
-3 workers"
+50 stone"
 
 [node name="Description" type="Label" parent="MenuHolder/TabContainer/MineMenu" unique_id=367363739]
 modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
@@ -160,6 +205,14 @@ offset_right = 160.0
 offset_bottom = 85.0
 text = "Upgrade towers"
 
+[node name="UnitMenuOpenButton" type="Button" parent="." unique_id=1616107278]
+layout_mode = 0
+offset_left = 1007.0
+offset_top = 36.0
+offset_right = 1139.0
+offset_bottom = 90.0
+text = "Manage units"
+
 [node name="StoneCpunt" type="Label" parent="." unique_id=1580557251]
 layout_direction = 3
 layout_mode = 0
@@ -175,12 +228,13 @@ visible = false
 layout_direction = 3
 layout_mode = 0
 offset_left = 26.0
-offset_top = 24.0
-offset_right = 83.0
-offset_bottom = 47.0
+offset_top = 580.0
+offset_right = 196.0
+offset_bottom = 603.0
 text = "occupied workers: 0/1"
 horizontal_alignment = 2
 
+[connection signal="pressed" from="UnitMenuBG/CloseUnitMenuButton" to="." method="_on_close_unit_menu_button_pressed"]
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/HouseButton" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/HouseUpgradeButton" to="." method="_on_house_upgrade_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/FixeHouseWall/FixHouseButton" to="." method="_on_fix_house_button_button_down"]
@@ -189,3 +243,4 @@ horizontal_alignment = 2
 [connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/FixMineWall/FixMineButton" to="." method="_on_fix_mine_button_button_down"]
 [connection signal="pressed" from="MenuHolder/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="MenuOpenButton" to="." method="_on_menu_open_button_pressed"]
+[connection signal="pressed" from="UnitMenuOpenButton" to="." method="_on_unit_menu_open_button_pressed"]

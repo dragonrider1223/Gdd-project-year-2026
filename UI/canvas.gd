@@ -33,10 +33,11 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	houseButton.text = "BUY HOUSE\n"+str(houseCost)+" stone"
-	mineButton.text = "BUY MINE\n"+str(mineCost)+" stone\n"+str(PlanetResourceHolder.menPerMine)+" workers"
+	mineButton.text = "BUY MINE\n"+str(mineCost)+" stone"
 	$MenuHolder/TabContainer/HouseMenu/HouseUpgradeButton.text = "UPGRADE HOUSE CAPACITY\n"+str(houseUpgradeCost)+" stone"
 	$MenuHolder/TabContainer/MineMenu/MineUpgradeButton.text = "UPGRADE MINE EFFICIENCY\n"+str(mineUpgradeCost)+" stone"
 	$MenuHolder.visible = false;
+	$UnitMenuBG.visible = false;
 
 
 func _on_button_button_down() -> void:	
@@ -48,18 +49,16 @@ func _on_button_button_down() -> void:
 
 func _on_mine_button_button_down() -> void:
 	if PlanetResourceHolder.mine != null:
-		if PlanetResourceHolder.stone >= mineCost&&(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)-PlanetResourceHolder.men>=PlanetResourceHolder.menPerMine:
+		if PlanetResourceHolder.stone >= mineCost:
 			PlanetResourceHolder.mine.buildingCount+=1;
-			PlanetResourceHolder.men+=PlanetResourceHolder.menPerMine
 			PlanetResourceHolder.stone-=mineCost
 			setCosts();
 
 
 func _on_fix_mine_button_button_down() -> void:
 	if PlanetResourceHolder.mine != null:
-		if PlanetResourceHolder.stone >= mineCost&&(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)-PlanetResourceHolder.men>=PlanetResourceHolder.menPerMine*3:
+		if PlanetResourceHolder.stone >= mineCost:
 			PlanetResourceHolder.stone-= mineCost
-			PlanetResourceHolder.men+=PlanetResourceHolder.menPerMine*3
 			PlanetResourceHolder.mineFixed = true
 			$MenuHolder/TabContainer/MineMenu/FixMineWall.visible = false;
 			
@@ -71,6 +70,7 @@ func _on_fix_house_button_button_down() -> void:
 			PlanetResourceHolder.houseFixed = true
 			$MenCounter.visible = true
 			$MenuHolder/TabContainer/HouseMenu/FixeHouseWall.visible = false;
+			$UnitMenuBG/UnitAlocationMenu/FixeHouseWall.visible = false;
 
 func setCosts() ->void:
 	houseCost = roundi(PlanetResourceHolder.houseCost+pow((PlanetResourceHolder.houseCost),1+(PlanetResourceHolder.houseCostIncrease*(PlanetResourceHolder.house.buildingCount-1))))
@@ -107,3 +107,13 @@ func _on_mine_button_2_button_down() -> void:
 			PlanetResourceHolder.stonePerMine+=1;
 			PlanetResourceHolder.stone-=mineUpgradeCost
 			setCosts();
+
+
+func _on_unit_menu_open_button_pressed() -> void:
+	$UnitMenuBG.visible = true;
+	$UnitMenuOpenButton.visible = false;
+
+
+func _on_close_unit_menu_button_pressed() -> void:
+	$UnitMenuBG.visible = false;
+	$UnitMenuOpenButton.visible = true;
