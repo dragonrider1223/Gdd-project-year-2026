@@ -23,10 +23,44 @@ offset_bottom = 645.0
 anchors_preset = 0
 metadata/_tab_index = 0
 
+[node name="Mines" type="Control" parent="UnitMenuBG/UnitAlocationMenu" unique_id=1808022507]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MineAllocationText" type="Label" parent="UnitMenuBG/UnitAlocationMenu/Mines" unique_id=254891066]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 202.0
+offset_right = 360.0
+offset_bottom = 329.0
+theme_override_colors/font_color = Color(18.892157, 18.892157, 18.892157, 1)
+text = "---Mines---
+Workers allocated: 0/7"
+horizontal_alignment = 1
+
+[node name="RemoveUnitsMine" type="Button" parent="UnitMenuBG/UnitAlocationMenu/Mines" unique_id=2099757386]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 256.0
+offset_right = 172.0
+offset_bottom = 287.0
+text = "-"
+
+[node name="AddUnitsMine" type="Button" parent="UnitMenuBG/UnitAlocationMenu/Mines" unique_id=864482145]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 256.0
+offset_right = 218.0
+offset_bottom = 287.0
+text = "+"
+
 [node name="FixeHouseWall" type="Panel" parent="UnitMenuBG/UnitAlocationMenu" unique_id=1574358122]
 layout_mode = 0
-offset_right = 368.0
-offset_bottom = 645.0
+offset_top = -5.0
+offset_right = 375.0
+offset_bottom = 651.0
 
 [node name="TextureRect" type="TextureRect" parent="UnitMenuBG/UnitAlocationMenu/FixeHouseWall" unique_id=1144485552]
 layout_mode = 0
@@ -144,6 +178,15 @@ offset_bottom = 348.0
 text = "UPGRADE MINE EFFICIENCY
 20.0"
 
+[node name="MineUpgradeSizeButton" type="Button" parent="MenuHolder/TabContainer/MineMenu" unique_id=1705957288]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 380.0
+offset_right = 290.0
+offset_bottom = 434.0
+text = "UPGRADE MINE SIZE
+20.0"
+
 [node name="MineButton" type="Button" parent="MenuHolder/TabContainer/MineMenu" unique_id=426789423]
 layout_mode = 0
 offset_left = 133.0
@@ -174,7 +217,7 @@ offset_top = 360.0
 offset_right = 233.0
 offset_bottom = 437.0
 text = "FIX MINE
-50 stone"
+20 stone"
 
 [node name="Description" type="Label" parent="MenuHolder/TabContainer/MineMenu" unique_id=367363739]
 modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
@@ -234,11 +277,14 @@ offset_bottom = 603.0
 text = "occupied workers: 0/1"
 horizontal_alignment = 2
 
+[connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/Mines/RemoveUnitsMine" to="." method="_on_remove_units_mine_button_down"]
+[connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/Mines/AddUnitsMine" to="." method="_on_add_units_mine_button_down"]
 [connection signal="pressed" from="UnitMenuBG/CloseUnitMenuButton" to="." method="_on_close_unit_menu_button_pressed"]
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/HouseButton" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/HouseUpgradeButton" to="." method="_on_house_upgrade_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/HouseMenu/FixeHouseWall/FixHouseButton" to="." method="_on_fix_house_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/MineUpgradeButton" to="." method="_on_mine_button_2_button_down"]
+[connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/MineUpgradeSizeButton" to="." method="_on_mine_upgrade_size_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/MineButton" to="." method="_on_mine_button_button_down"]
 [connection signal="button_down" from="MenuHolder/TabContainer/MineMenu/FixMineWall/FixMineButton" to="." method="_on_fix_mine_button_button_down"]
 [connection signal="pressed" from="MenuHolder/CloseButton" to="." method="_on_close_button_pressed"]

@@ -14,7 +14,7 @@ static var houseCostIncrease = 0.3;
 
 static var mine = Menu.NONE;
 static var mineFixed = false;
-static var mineCost = 25;
+static var mineCost = 10;
 static var mineCostIncrease = 0.2;
 static var menPerMine = 1;
 static var stonePerMine = 1;
