@@ -16,6 +16,8 @@ var  mineCost :int = 20
 var  mineUpgradeCost :int = 60
 var  mineSizeUpgradeCost :int = 300
 
+var UnitAllocationAmount = 1;
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	stoneCounter.text = str(PlanetResourceHolder.stone)+" stone"
@@ -41,6 +43,8 @@ func _ready() -> void:
 	$MenuHolder.visible = false;
 	$UnitMenuBG.visible = false;
 	$UnitMenuBG/UnitAlocationMenu/Mines/MineAllocationText.text = "---Mines---\nWorkers allocated: 0/0"
+	
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/OneTime.toggle_mode = true;
 
 
 func _on_button_button_down() -> void:	
@@ -137,14 +141,19 @@ func _on_close_unit_menu_button_pressed() -> void:
 
 
 func _on_remove_units_mine_button_down() -> void:
+	var amount = UnitAllocationAmount
+	if(amount>PlanetResourceHolder.menInMine):
+		amount = PlanetResourceHolder.menInMine;
 	if(PlanetResourceHolder.menInMine>0):
-		PlanetResourceHolder.menInMine-=1;
+		PlanetResourceHolder.menInMine-=amount;
 		updateAllocationButtonsAndText()
 
 
 func _on_add_units_mine_button_down() -> void:
-	if(PlanetResourceHolder.men<PlanetResourceHolder.menPerMine*PlanetResourceHolder.mine.buildingCount&&PlanetResourceHolder.mineFixed&&PlanetResourceHolder.men<PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount):
-		PlanetResourceHolder.menInMine+=1;
+	var amount = clamp(PlanetResourceHolder.menInMine+UnitAllocationAmount,0,PlanetResourceHolder.menPerMine*PlanetResourceHolder.mine.buildingCount) - PlanetResourceHolder.menInMine
+	amount = min(amount,(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount) - PlanetResourceHolder.men) 
+	if(PlanetResourceHolder.men<PlanetResourceHolder.menPerMine*PlanetResourceHolder.mine.buildingCount&&PlanetResourceHolder.mineFixed&&PlanetResourceHolder.men+amount<=(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)):
+		PlanetResourceHolder.menInMine+=amount;
 		updateAllocationButtonsAndText()
 
 
@@ -154,3 +163,47 @@ func _on_mine_upgrade_size_button_button_down() -> void:
 			PlanetResourceHolder.menPerMine+=1;
 			PlanetResourceHolder.stone-=mineSizeUpgradeCost
 			setCosts();
+
+
+
+func _on_max_time_button_down() -> void:
+	UnitAllocationAmount = 99999;
+	setAllTogglesFalseAmountButtons();
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/MaxTime.toggle_mode = true;
+
+func _on_one_time_button_down() -> void:
+	UnitAllocationAmount = 1;
+	setAllTogglesFalseAmountButtons();
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/OneTime.toggle_mode = true;
+
+
+func _on_five_time_button_down() -> void:
+	UnitAllocationAmount = 5;
+	setAllTogglesFalseAmountButtons();
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/FiveTime.toggle_mode = true;
+
+
+func _on_twenty_time_button_down() -> void:
+	UnitAllocationAmount = 20;
+	setAllTogglesFalseAmountButtons();
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/twentyTime.toggle_mode = true;
+
+
+func _on_fifty_time_button_down() -> void:
+	UnitAllocationAmount = 50;
+	setAllTogglesFalseAmountButtons();
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/FiftyTime.toggle_mode = true;
+
+
+func _on_one_hundred_time_button_down() -> void:
+	UnitAllocationAmount = 100;
+	setAllTogglesFalseAmountButtons();
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/OneHundredTime.toggle_mode = true;
+
+func setAllTogglesFalseAmountButtons():
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/OneTime.toggle_mode = false;
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/FiveTime.toggle_mode = false;
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/twentyTime.toggle_mode = false;
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/FiftyTime.toggle_mode = false;
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/OneHundredTime.toggle_mode = false;
+	$UnitMenuBG/UnitAlocationMenu/AmountButtons/MaxTime.toggle_mode = false;

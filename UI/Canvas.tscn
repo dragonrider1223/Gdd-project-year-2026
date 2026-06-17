@@ -23,6 +23,65 @@ offset_bottom = 645.0
 anchors_preset = 0
 metadata/_tab_index = 0
 
+[node name="AmountButtons" type="Control" parent="UnitMenuBG/UnitAlocationMenu" unique_id=505057109]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OneTime" type="Button" parent="UnitMenuBG/UnitAlocationMenu/AmountButtons" unique_id=568982985]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 206.0
+offset_right = 77.0
+offset_bottom = 237.0
+toggle_mode = true
+text = "1x"
+
+[node name="FiveTime" type="Button" parent="UnitMenuBG/UnitAlocationMenu/AmountButtons" unique_id=1859693921]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 206.0
+offset_right = 114.0
+offset_bottom = 237.0
+toggle_mode = true
+text = "5x"
+
+[node name="twentyTime" type="Button" parent="UnitMenuBG/UnitAlocationMenu/AmountButtons" unique_id=173002505]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 206.0
+offset_right = 162.0
+offset_bottom = 237.0
+toggle_mode = true
+text = "20x"
+
+[node name="FiftyTime" type="Button" parent="UnitMenuBG/UnitAlocationMenu/AmountButtons" unique_id=643555351]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 206.0
+offset_right = 208.0
+offset_bottom = 237.0
+toggle_mode = true
+text = "50x"
+
+[node name="OneHundredTime" type="Button" parent="UnitMenuBG/UnitAlocationMenu/AmountButtons" unique_id=1639558932]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 206.0
+offset_right = 264.0
+offset_bottom = 237.0
+toggle_mode = true
+text = "100x"
+
+[node name="MaxTime" type="Button" parent="UnitMenuBG/UnitAlocationMenu/AmountButtons" unique_id=1350811371]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 206.0
+offset_right = 315.0
+offset_bottom = 237.0
+toggle_mode = true
+text = "max"
+
 [node name="Mines" type="Control" parent="UnitMenuBG/UnitAlocationMenu" unique_id=1808022507]
 anchors_preset = 0
 offset_right = 40.0
@@ -32,9 +91,9 @@ offset_bottom = 40.0
 modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
 layout_mode = 0
 offset_left = 11.0
-offset_top = 202.0
+offset_top = 258.0
 offset_right = 360.0
-offset_bottom = 329.0
+offset_bottom = 385.0
 theme_override_colors/font_color = Color(18.892157, 18.892157, 18.892157, 1)
 text = "---Mines---
 Workers allocated: 0/7"
@@ -43,17 +102,17 @@ horizontal_alignment = 1
 [node name="RemoveUnitsMine" type="Button" parent="UnitMenuBG/UnitAlocationMenu/Mines" unique_id=2099757386]
 layout_mode = 0
 offset_left = 154.0
-offset_top = 256.0
+offset_top = 312.0
 offset_right = 172.0
-offset_bottom = 287.0
+offset_bottom = 343.0
 text = "-"
 
 [node name="AddUnitsMine" type="Button" parent="UnitMenuBG/UnitAlocationMenu/Mines" unique_id=864482145]
 layout_mode = 0
 offset_left = 200.0
-offset_top = 256.0
+offset_top = 312.0
 offset_right = 218.0
-offset_bottom = 287.0
+offset_bottom = 343.0
 text = "+"
 
 [node name="FixeHouseWall" type="Panel" parent="UnitMenuBG/UnitAlocationMenu" unique_id=1574358122]
@@ -277,6 +336,12 @@ offset_bottom = 603.0
 text = "occupied workers: 0/1"
 horizontal_alignment = 2
 
+[connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/AmountButtons/OneTime" to="." method="_on_one_time_button_down"]
+[connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/AmountButtons/FiveTime" to="." method="_on_five_time_button_down"]
+[connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/AmountButtons/twentyTime" to="." method="_on_twenty_time_button_down"]
+[connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/AmountButtons/FiftyTime" to="." method="_on_fifty_time_button_down"]
+[connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/AmountButtons/OneHundredTime" to="." method="_on_one_hundred_time_button_down"]
+[connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/AmountButtons/MaxTime" to="." method="_on_max_time_button_down"]
 [connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/Mines/RemoveUnitsMine" to="." method="_on_remove_units_mine_button_down"]
 [connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/Mines/AddUnitsMine" to="." method="_on_add_units_mine_button_down"]
 [connection signal="pressed" from="UnitMenuBG/CloseUnitMenuButton" to="." method="_on_close_unit_menu_button_pressed"]
