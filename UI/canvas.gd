@@ -190,6 +190,7 @@ func _on_twenty_time_button_down() -> void:
 
 
 func _on_fifty_time_button_down() -> void:
+	
 	UnitAllocationAmount = 50;
 	setAllTogglesFalseAmountButtons();
 	$UnitMenuBG/UnitAlocationMenu/AmountButtons/FiftyTime.toggle_mode = true;

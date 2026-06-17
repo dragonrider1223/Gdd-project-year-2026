@@ -53,3 +53,25 @@ func _on_static_body_2d_mouse_exited() -> void:
 	initialImageScale = image.scale
 	targetImageScale = Vector2(1,1)
 	currentImageScaleTime = 0;
+
+
+func _on_rigid_body_2d_body_entered(body: Node) -> void:
+	if body.is_in_group("enemy"):
+		_damage(100);
+
+func _damage(amount: float):
+	if(amount<=PlanetResourceHolder.stone):
+		PlanetResourceHolder.stone-=amount;
+	else:
+		amount -= PlanetResourceHolder.stone;
+		PlanetResourceHolder.stone=0;
+		
+		while(amount>0):
+			if (amount>=100&&PlanetResourceHolder.mine.buildingCount>1):
+				PlanetResourceHolder.mine.buildingCount -=1;
+				amount -=100
+			elif (amount >=10&&PlanetResourceHolder.house.buildingCount>1):
+				PlanetResourceHolder.house.buildingCount -=1;
+				amount -=10
+			else:
+				amount -=1;
