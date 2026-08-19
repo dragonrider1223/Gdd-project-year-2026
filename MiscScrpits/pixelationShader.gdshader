@@ -11,6 +11,7 @@ void fragment() {
 	p_uv += 0.5;
 	p_uv += 1.0/pixelCount/2.0;
 	COLOR = texture(TEXTURE,p_uv);
+	
 }
 
 

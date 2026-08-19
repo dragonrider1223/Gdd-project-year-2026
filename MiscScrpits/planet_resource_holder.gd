@@ -7,6 +7,8 @@ enum Menu
 	MINE
 }
 
+static var instance = null;
+
 static var house = Menu.NONE;
 static var houseFixed = false;
 static var houseCost = 5;

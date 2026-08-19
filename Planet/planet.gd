@@ -18,6 +18,7 @@ var imageScaleTime:float = 0.1; #should be 0.1 to make it take 0.1 second to sca
 var currentImageScaleTime:float = 1;
 var rotateAmount:float = 0.1;
 
+
 func _on_static_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if  event is InputEventMouseButton and event.pressed:
 		PlanetResourceHolder.stone+=1;
@@ -75,3 +76,6 @@ func _damage(amount: float):
 				amount -=10
 			else:
 				amount -=1;
+
+func _ready() -> void:
+	PlanetResourceHolder.instance = self;

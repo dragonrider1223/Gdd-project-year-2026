@@ -1,12 +1,89 @@
 [gd_scene format=3 uid="uid://yjtdtmd17a5q"]
 
 [ext_resource type="Script" uid="uid://dsudpde1wro2c" path="res://Enemies/enemy.gd" id="1_4isyn"]
-[ext_resource type="Texture2D" uid="uid://d36bxrlraawxy" path="res://icon.svg" id="2_837ky"]
+[ext_resource type="Texture2D" uid="uid://bhoub0l6tueeg" path="res://Enemies/UFO.png" id="2_4isyn"]
+[ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="2_wdetw"]
+[ext_resource type="Texture2D" uid="uid://djaho0wyg0q32" path="res://Enemies/UFO_white.png" id="4_jcwuj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcwuj"]
+shader = ExtResource("2_wdetw")
+shader_parameter/pixelCount = 8.00000038
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdetw"]
+radius = 759.2378
+
+[sub_resource type="Curve" id="Curve_jcwuj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25666666, 1), 0.0, 0.0, 0, 0, Vector2(0.60333335, 0.5953992), -4.305249, -4.305249, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_biruh"]
+curve = SubResource("Curve_jcwuj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jcwuj"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = -1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 100.0
+scale_max = 178.01
+scale_curve = SubResource("CurveTexture_biruh")
 
 [node name="Enemy" type="Node2D" unique_id=670262808]
 script = ExtResource("1_4isyn")
+planetRadius = 1000
+maxShakeDist = 20.0
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=636522845]
+material = SubResource("ShaderMaterial_jcwuj")
 position = Vector2(0, -5214)
-scale = Vector2(4.4087486, 4.4087486)
-texture = ExtResource("2_837ky")
+scale = Vector2(2, 2)
+texture = ExtResource("2_4isyn")
+
+[node name="Flash" type="Sprite2D" parent="Icon" unique_id=420256605]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+material = SubResource("ShaderMaterial_jcwuj")
+texture = ExtResource("4_jcwuj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon" unique_id=721089365]
+scale = Vector2(0.185, 0.185)
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D" unique_id=1178060524]
+shape = SubResource("CircleShape2D_wdetw")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Icon" unique_id=742192995]
+self_modulate = Color(0.950231, 0.5366911, 0.22248682, 1)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 100
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_jcwuj")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Icon/GPUParticles2D" unique_id=752649269]
+self_modulate = Color(1, 0.82269704, 0.28774378, 1)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 100
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_jcwuj")
+
+[node name="DeathTImer" type="Timer" parent="." unique_id=1239933977]
+wait_time = 2.0
+one_shot = true
+
+[node name="knockbackTimer" type="Timer" parent="." unique_id=9455941]
+one_shot = true
+
+[node name="shakeTimer" type="Timer" parent="." unique_id=857116867]
+wait_time = 0.05
+one_shot = true
+
+[node name="whiteFlashTimer" type="Timer" parent="." unique_id=449501041]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="input_event" from="Icon/StaticBody2D" to="." method="_on_static_body_2d_input_event"]
+[connection signal="timeout" from="DeathTImer" to="." method="_on_death_t_imer_timeout"]
+[connection signal="timeout" from="shakeTimer" to="." method="_on_shake_timer_timeout"]

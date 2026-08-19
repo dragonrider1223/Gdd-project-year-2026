@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://yjtdtmd17a5q"]
+
+[ext_resource type="Script" uid="uid://dsudpde1wro2c" path="res://Enemies/enemy.gd" id="1_4isyn"]
+[ext_resource type="Texture2D" uid="uid://bhoub0l6tueeg" path="res://Enemies/asteroid no bg.png" id="2_4isyn"]
+[ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="2_wdetw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcwuj"]
+shader = ExtResource("2_wdetw")
+shader_parameter/pixelCount = 16.00000076
+
+[node name="Enemy" type="Node2D" unique_id=670262808]
+script = ExtResource("1_4isyn")
+shooter = null
+moveTime = null
+planetRadius = 1000
+orbit = null
+orbitSpeed = null
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=636522845]
+material = SubResource("ShaderMaterial_jcwuj")
+position = Vector2(0, -5214)
+scale = Vector2(4.4087486, 4.4087486)
+texture = ExtResource("2_4isyn")

@@ -56,10 +56,8 @@ shape = SubResource("CircleShape2D_pq8jx")
 [node name="EnemyManager" type="Node2D" parent="." unique_id=56755281]
 
 [node name="Enemy" parent="EnemyManager" unique_id=823652041 instance=ExtResource("7_7iu0o")]
-shooter = false
-moveTime = 10
+planetRadius = 1
 orbit = false
-orbitSpeed = 0.1
 
 [connection signal="input_event" from="StaticBody2D" to="." method="_on_static_body_2d_input_event"]
 [connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
