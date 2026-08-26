@@ -11,6 +11,8 @@ var dist = 1;
 var currentShakeCount = 10.0;
 @export var maxShakeDist = 10.0;
 
+var dead = false;
+
 
 var startPos;
 
@@ -24,8 +26,10 @@ func damage():
 	$whiteFlashTimer.start()
 	$shakeTimer.start()
 	currentShakeCount = shakeCount
-	if(health<=0):
+	$Hit.play(0)
+	if(health<=0&&!dead):
 		death()
+		PlanetResourceHolder.scrap +=1;
 		
 
 # Called when the node enters the scene tree for the first time.
@@ -36,7 +40,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(health>0&&$Icon.position.y<=-planetRadius):
+	if(health>0&&!dead):
 		if(shakeCount>0):
 			var mult = 1;
 			if(floori( currentShakeCount)%2==0):
@@ -61,7 +65,7 @@ func _process(delta: float) -> void:
 				dist+=delta
 				$Icon.position.y = lerpf(startPos,0,dist/moveTime)
 				if ($Icon.position.y>-planetRadius):
-					PlanetResourceHolder.instance._damage(max(100*PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount, PlanetResourceHolder.stone/2));#scale damage in the background, always 50% or more of your stone
+					PlanetResourceHolder.instance._damage(max(10*PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount, PlanetResourceHolder.stone/2));#scale damage in the background, always 50% or more of your stone
 					death()
 	else:
 		$Icon.self_modulate.a = 0
@@ -74,12 +78,12 @@ func _on_shake_timer_timeout() -> void:
 		
 
 func death():
+	$DeathSFX.play(0)
+	dead = true
 	$DeathTImer.start()
 	$Icon.texture = null
 	$Icon/GPUParticles2D.emitting = true;
 	$Icon/GPUParticles2D/GPUParticles2D2.emitting = true;
 
 func _on_death_t_imer_timeout() -> void:
-	if(health<=0):
-		PlanetResourceHolder.scrap +=1;
 	queue_free()

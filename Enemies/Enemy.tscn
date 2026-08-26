@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bhoub0l6tueeg" path="res://Enemies/UFO.png" id="2_4isyn"]
 [ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="2_wdetw"]
 [ext_resource type="Texture2D" uid="uid://djaho0wyg0q32" path="res://Enemies/UFO_white.png" id="4_jcwuj"]
+[ext_resource type="AudioStream" uid="uid://bj7kl3s2y5tne" path="res://SFX/866967__sadiquecat__ir-shower-balloon-pop-binaural-okm1.wav" id="5_biruh"]
+[ext_resource type="AudioStream" uid="uid://d0ngauc3me1ku" path="res://SFX/859026__cat-fox_alex__impact-retro-explosion-1.wav" id="5_n1bor"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jcwuj"]
 shader = ExtResource("2_wdetw")
@@ -84,6 +86,14 @@ one_shot = true
 [node name="whiteFlashTimer" type="Timer" parent="." unique_id=449501041]
 wait_time = 0.1
 one_shot = true
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=948820431]
+position = Vector2(764, 1250)
+stream = ExtResource("5_biruh")
+
+[node name="DeathSFX" type="AudioStreamPlayer2D" parent="." unique_id=379866061]
+position = Vector2(1528, 2500)
+stream = ExtResource("5_n1bor")
 
 [connection signal="input_event" from="Icon/StaticBody2D" to="." method="_on_static_body_2d_input_event"]
 [connection signal="timeout" from="DeathTImer" to="." method="_on_death_t_imer_timeout"]

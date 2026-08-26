@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://b788txksrppa0" path="res://Planet/unit_holder.gd" id="5_x7wbh"]
 [ext_resource type="PackedScene" uid="uid://b5j03rj1dk4tu" path="res://Buildings/unit.tscn" id="6_pq8jx"]
 [ext_resource type="Script" uid="uid://blq781wq51ug" path="res://Enemies/enemy_manager.gd" id="7_7iu0o"]
+[ext_resource type="AudioStream" uid="uid://dy2oql65n075c" path="res://SFX/511597__robpnicholson__dirty-siren.wav" id="8_yd76d"]
+[ext_resource type="AudioStream" uid="uid://bb1m64k4y4bxq" path="res://SFX/660770__madpancake__hit-impact.ogg" id="9_j1j6b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_06kw6"]
 radius = 759.2378
@@ -55,10 +57,17 @@ shape = SubResource("CircleShape2D_pq8jx")
 
 [node name="EnemyManager" type="Node2D" parent="." unique_id=56755281]
 script = ExtResource("7_7iu0o")
-minTime = 45
+maxTime = 1
+minTime = 1
 
 [node name="EnemySpawnTimer" type="Timer" parent="EnemyManager" unique_id=766392907]
 wait_time = 10.0
+
+[node name="Siren" type="AudioStreamPlayer2D" parent="EnemyManager" unique_id=1370300981]
+stream = ExtResource("8_yd76d")
+
+[node name="PlanetHit" type="AudioStreamPlayer2D" parent="." unique_id=216217286]
+stream = ExtResource("9_j1j6b")
 
 [connection signal="input_event" from="StaticBody2D" to="." method="_on_static_body_2d_input_event"]
 [connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]

@@ -22,6 +22,8 @@ var rotateAmount:float = 0.1;
 func _on_static_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if  event is InputEventMouseButton and event.pressed:
 		PlanetResourceHolder.stone+=1;
+		$PlanetHit.pitch_scale = randf_range(0.8,1.2)
+		$PlanetHit.play(0)
 		shakeCount = 3;
 
 func _process(delta: float) -> void:

@@ -25,5 +25,6 @@ func _ChangeUnitCount():
 				$".".add_child(newUnit)
 				units.append(newUnit)
 			elif (units.size()>activeUnits):
-				units.back().queue_free()
-				units.remove_at(units.size()-1)
+				if(units.back!=null):
+					units.back().queue_free()
+					units.remove_at(units.size()-1)

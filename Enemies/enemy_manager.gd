@@ -24,5 +24,6 @@ func _process(delta: float) -> void:
 	PlanetResourceHolder.EnemyBar.value = $EnemySpawnTimer.time_left
 
 func spawn():
+	$Siren.play(0)
 	var newEnemy = enemy.instantiate()
 	self.add_child(newEnemy)

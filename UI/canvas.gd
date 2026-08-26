@@ -75,6 +75,7 @@ func _on_fix_mine_button_button_down() -> void:
 			$MenuHolder/TabContainer/MineMenu/FixMineWall.visible = false;
 			$Tutorialpanel.show()
 			updateAllocationButtonsAndText()
+			$Buy.play(0)
 
 func _on_fix_house_button_button_down() -> void:
 	if PlanetResourceHolder.house != null:
@@ -84,6 +85,7 @@ func _on_fix_house_button_button_down() -> void:
 			$MenCounter.visible = true
 			$MenuHolder/TabContainer/HouseMenu/FixeHouseWall.visible = false;
 			$UnitMenuBG/UnitAlocationMenu/FixeHouseWall.visible = false;
+			$Buy.play(0)
 
 func setCosts() ->void:
 	houseCost = roundi(PlanetResourceHolder.houseCost+pow((PlanetResourceHolder.houseCost),1+(PlanetResourceHolder.houseCostIncrease*(PlanetResourceHolder.house.buildingCount-1))))
@@ -104,6 +106,8 @@ func setCosts() ->void:
 	mineSizeUpgradeCost = roundi(PlanetResourceHolder.mineCost*15+pow((PlanetResourceHolder.mineCost)*15,1+(PlanetResourceHolder.mineCostIncrease*(PlanetResourceHolder.menPerMine-1))))
 	$MenuHolder/TabContainer/MineMenu/MineUpgradeSizeButton.text = "UPGRADE MINE SIZE\n"+str(mineSizeUpgradeCost)+" stone"
 	
+	$Buy.play(0)
+	
 	updateAllocationButtonsAndText()
 	
 
@@ -115,10 +119,12 @@ func updateAllocationButtonsAndText():
 
 func _on_close_button_pressed() -> void:
 	PlanetResourceHolder.menuState = PlanetResourceHolder.Menu.NONE
+	$Press.play(0)
 
 
 func _on_menu_open_button_pressed() -> void:
 	PlanetResourceHolder.menuState = PlanetResourceHolder.Menu.HOUSE;
+	$Press.play(0)
 
 
 func _on_house_upgrade_button_button_down() -> void:
@@ -140,11 +146,13 @@ func _on_mine_button_2_button_down() -> void:
 func _on_unit_menu_open_button_pressed() -> void:
 	$UnitMenuBG.visible = true;
 	$UnitMenuOpenButton.visible = false;
+	$Press.play(0)
 
 
 func _on_close_unit_menu_button_pressed() -> void:
 	$UnitMenuBG.visible = false;
 	$UnitMenuOpenButton.visible = true;
+	$Press.play(0)
 
 
 func _on_remove_units_mine_button_down() -> void:
@@ -154,6 +162,7 @@ func _on_remove_units_mine_button_down() -> void:
 	if(PlanetResourceHolder.menInMine>0):
 		PlanetResourceHolder.menInMine-=amount;
 		updateAllocationButtonsAndText()
+	$Press.play(0)
 
 
 func _on_add_units_mine_button_down() -> void:
@@ -162,6 +171,7 @@ func _on_add_units_mine_button_down() -> void:
 	if(PlanetResourceHolder.men<PlanetResourceHolder.menPerMine*PlanetResourceHolder.mine.buildingCount&&PlanetResourceHolder.mineFixed&&PlanetResourceHolder.men+amount<=(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)):
 		PlanetResourceHolder.menInMine+=amount;
 		updateAllocationButtonsAndText()
+	$Press.play(0)
 
 
 func _on_mine_upgrade_size_button_button_down() -> void:
@@ -184,23 +194,27 @@ func _on_max_time_button_down() -> void:
 	UnitAllocationAmount = 99999;
 	setAllTogglesFalseAmountButtons();
 	$UnitMenuBG/UnitAlocationMenu/AmountButtons/MaxTime.toggle_mode = true;
+	$Press.play(0)
 
 func _on_one_time_button_down() -> void:
 	UnitAllocationAmount = 1;
 	setAllTogglesFalseAmountButtons();
 	$UnitMenuBG/UnitAlocationMenu/AmountButtons/OneTime.toggle_mode = true;
+	$Press.play(0)
 
 
 func _on_five_time_button_down() -> void:
 	UnitAllocationAmount = 5;
 	setAllTogglesFalseAmountButtons();
 	$UnitMenuBG/UnitAlocationMenu/AmountButtons/FiveTime.toggle_mode = true;
+	$Press.play(0)
 
 
 func _on_twenty_time_button_down() -> void:
 	UnitAllocationAmount = 20;
 	setAllTogglesFalseAmountButtons();
 	$UnitMenuBG/UnitAlocationMenu/AmountButtons/twentyTime.toggle_mode = true;
+	$Press.play(0)
 
 
 func _on_fifty_time_button_down() -> void:
@@ -208,12 +222,14 @@ func _on_fifty_time_button_down() -> void:
 	UnitAllocationAmount = 50;
 	setAllTogglesFalseAmountButtons();
 	$UnitMenuBG/UnitAlocationMenu/AmountButtons/FiftyTime.toggle_mode = true;
+	$Press.play(0)
 
 
 func _on_one_hundred_time_button_down() -> void:
 	UnitAllocationAmount = 100;
 	setAllTogglesFalseAmountButtons();
 	$UnitMenuBG/UnitAlocationMenu/AmountButtons/OneHundredTime.toggle_mode = true;
+	$Press.play(0)
 
 func setAllTogglesFalseAmountButtons():
 	$UnitMenuBG/UnitAlocationMenu/AmountButtons/OneTime.toggle_mode = false;

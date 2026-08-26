@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cfad5box8v352" path="res://UI/canvas.gd" id="1_gleao"]
 [ext_resource type="Texture2D" uid="uid://c1plckurocgrs" path="res://chain.png" id="2_c2mgu"]
 [ext_resource type="Script" uid="uid://c2j2cf7dbic8l" path="res://UI/tutorialpanel.gd" id="3_urkqc"]
+[ext_resource type="AudioStream" uid="uid://draja8f72gol3" path="res://SFX/728224__disman__cash-register-chching.mp3" id="4_7c1lu"]
+[ext_resource type="AudioStream" uid="uid://dok13bvw2ba88" path="res://SFX/862451__avaol__ui-click.wav" id="4_ujc8m"]
 
 [sub_resource type="DPITexture" id="DPITexture_urkqc"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".37\"/></svg>
@@ -428,6 +430,15 @@ max_value = 10.0
 step = 0.1
 editable = false
 scrollable = false
+
+[node name="Press" type="AudioStreamPlayer2D" parent="." unique_id=1276619241]
+position = Vector2(764, 1250)
+stream = ExtResource("4_ujc8m")
+volume_db = 10.0
+
+[node name="Buy" type="AudioStreamPlayer2D" parent="." unique_id=1263481491]
+position = Vector2(382, 625)
+stream = ExtResource("4_7c1lu")
 
 [connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/AmountButtons/OneTime" to="." method="_on_one_time_button_down"]
 [connection signal="button_down" from="UnitMenuBG/UnitAlocationMenu/AmountButtons/FiveTime" to="." method="_on_five_time_button_down"]
