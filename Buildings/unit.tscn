@@ -2,11 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://d36bxrlraawxy" path="res://icon.svg" id="1_6siug"]
 [ext_resource type="Script" uid="uid://dsf6vt8na0762" path="res://Buildings/unit.gd" id="1_x68ac"]
+[ext_resource type="Shader" uid="uid://qlh80mweo623" path="res://MiscScrpits/pixelationShader.gdshader" id="2_mojob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ct8lc"]
+shader = ExtResource("2_mojob")
+shader_parameter/pixelCount = 2.000000095
 
 [node name="Unit" type="Node2D" unique_id=670262808]
 script = ExtResource("1_x68ac")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=636522845]
+material = SubResource("ShaderMaterial_ct8lc")
 position = Vector2(0, -826)
 texture = ExtResource("1_6siug")
 

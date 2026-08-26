@@ -32,11 +32,12 @@ scale_curve = SubResource("CurveTexture_biruh")
 [node name="Enemy" type="Node2D" unique_id=670262808]
 script = ExtResource("1_4isyn")
 planetRadius = 1000
+health = 25
 maxShakeDist = 20.0
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=636522845]
 material = SubResource("ShaderMaterial_jcwuj")
-position = Vector2(0, -5214)
+position = Vector2(0, -8214)
 scale = Vector2(2, 2)
 texture = ExtResource("2_4isyn")
 

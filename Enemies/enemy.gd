@@ -36,7 +36,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(health>0):
+	if(health>0&&$Icon.position.y<=-planetRadius):
 		if(shakeCount>0):
 			var mult = 1;
 			if(floori( currentShakeCount)%2==0):
@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 				dist+=delta
 				$Icon.position.y = lerpf(startPos,0,dist/moveTime)
 				if ($Icon.position.y>-planetRadius):
-					PlanetResourceHolder.instance._damage(100);
+					PlanetResourceHolder.instance._damage(max(100*PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount, PlanetResourceHolder.stone/2));#scale damage in the background, always 50% or more of your stone
 					death()
 	else:
 		$Icon.self_modulate.a = 0
@@ -80,4 +80,6 @@ func death():
 	$Icon/GPUParticles2D/GPUParticles2D2.emitting = true;
 
 func _on_death_t_imer_timeout() -> void:
+	if(health<=0):
+		PlanetResourceHolder.scrap +=1;
 	queue_free()

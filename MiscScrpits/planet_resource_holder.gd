@@ -20,12 +20,18 @@ static var mineCost = 10;
 static var mineCostIncrease = 0.2;
 static var menPerMine = 1;
 static var stonePerMine = 1;
+static var stonePerMineMult = 1;
 static var timePerMine = 1;
 static var menInMine = 0;
 
 static var menuState = Menu.NONE;
 static var stone: int = 0;
 static var men:int = 0
+static var scrap: int = 0;
+
 
 
 static var menPerHouse:int = 1
+
+static var EnemyBar = null;
+static var enemyManager = null;

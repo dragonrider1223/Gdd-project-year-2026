@@ -2,6 +2,7 @@ extends Control
 
 @onready var stoneCounter = $StoneCpunt
 @onready var menHolder = $MenCounter
+@onready var scrapCounter = $ScrapMetalCount
 
 @onready var houseButton = $MenuHolder/TabContainer/HouseMenu/HouseButton
 @onready var mineButton = $MenuHolder/TabContainer/MineMenu/MineButton
@@ -14,6 +15,7 @@ var  houseCost :int = 10
 var  houseUpgradeCost :int = 150
 var  mineCost :int = 20
 var  mineUpgradeCost :int = 60
+var  mineUpgradeCost2 :int = 4
 var  mineSizeUpgradeCost :int = 300
 
 var UnitAllocationAmount = 1;
@@ -22,6 +24,7 @@ var UnitAllocationAmount = 1;
 func _process(delta: float) -> void:
 	stoneCounter.text = str(PlanetResourceHolder.stone)+" stone"
 	menHolder.text ="occupied workers: "+str(PlanetResourceHolder.men)+"/"+str(PlanetResourceHolder.menPerHouse*PlanetResourceHolder.house.buildingCount)
+	scrapCounter.text = str(PlanetResourceHolder.scrap)+" scrap"
 	if(PlanetResourceHolder.menuState!=currentState):
 		currentState =PlanetResourceHolder.menuState
 		if(currentState==PlanetResourceHolder.Menu.NONE):
@@ -35,11 +38,13 @@ func _process(delta: float) -> void:
 			menus[currentState-1].visible = true;
 
 func _ready() -> void:
+	PlanetResourceHolder.EnemyBar = $ProgressBar
 	houseButton.text = "BUY HOUSE\n"+str(houseCost)+" stone"
 	mineButton.text = "BUY MINE\n"+str(mineCost)+" stone"
 	$MenuHolder/TabContainer/HouseMenu/HouseUpgradeButton.text = "UPGRADE HOUSE CAPACITY\n"+str(houseUpgradeCost)+" stone"
 	$MenuHolder/TabContainer/MineMenu/MineUpgradeButton.text = "UPGRADE MINE EFFICIENCY\n"+str(mineUpgradeCost)+" stone"
 	$MenuHolder/TabContainer/MineMenu/MineUpgradeSizeButton.text = "UPGRADE MINE SIZE\n"+str(mineSizeUpgradeCost)+" stone"
+	$MenuHolder/TabContainer/MineMenu/MineUpgradeButton2.text = "UPGRADE MINE EFFICIENCY MULTIPLIER\n"+str(mineUpgradeCost2)+" scrap"
 	$MenuHolder.visible = false;
 	$UnitMenuBG.visible = false;
 	$UnitMenuBG/UnitAlocationMenu/Mines/MineAllocationText.text = "---Mines---\nWorkers allocated: 0/0"
@@ -68,8 +73,8 @@ func _on_fix_mine_button_button_down() -> void:
 			PlanetResourceHolder.stone-= mineCost
 			PlanetResourceHolder.mineFixed = true
 			$MenuHolder/TabContainer/MineMenu/FixMineWall.visible = false;
+			$Tutorialpanel.show()
 			updateAllocationButtonsAndText()
-			
 
 func _on_fix_house_button_button_down() -> void:
 	if PlanetResourceHolder.house != null:
@@ -93,6 +98,8 @@ func setCosts() ->void:
 	mineUpgradeCost = roundi(PlanetResourceHolder.mineCost*3+pow((PlanetResourceHolder.mineCost)*3,1+(PlanetResourceHolder.mineCostIncrease*(PlanetResourceHolder.stonePerMine-1))))
 	$MenuHolder/TabContainer/MineMenu/MineUpgradeButton.text = "UPGRADE MINE EFFICIENCY\n"+str(mineUpgradeCost)+" stone"
 	
+	mineUpgradeCost2 = roundi(PlanetResourceHolder.mineCost/4+pow((PlanetResourceHolder.mineCost)/4,1+(PlanetResourceHolder.mineCostIncrease*(PlanetResourceHolder.stonePerMineMult-1))))
+	$MenuHolder/TabContainer/MineMenu/MineUpgradeButton2.text = "UPGRADE MINE EFFICIENCY MULTIPLIER\n"+str(mineUpgradeCost2)+" scrap"
 	
 	mineSizeUpgradeCost = roundi(PlanetResourceHolder.mineCost*15+pow((PlanetResourceHolder.mineCost)*15,1+(PlanetResourceHolder.mineCostIncrease*(PlanetResourceHolder.menPerMine-1))))
 	$MenuHolder/TabContainer/MineMenu/MineUpgradeSizeButton.text = "UPGRADE MINE SIZE\n"+str(mineSizeUpgradeCost)+" stone"
@@ -165,6 +172,13 @@ func _on_mine_upgrade_size_button_button_down() -> void:
 			setCosts();
 
 
+func _on_mine_upgrade_button_2_pressed() -> void:
+	
+	if PlanetResourceHolder.mine != null:
+		if PlanetResourceHolder.scrap >= mineUpgradeCost2:
+			PlanetResourceHolder.stonePerMineMult+=1;
+			PlanetResourceHolder.scrap-=mineUpgradeCost2
+			setCosts();
 
 func _on_max_time_button_down() -> void:
 	UnitAllocationAmount = 99999;
