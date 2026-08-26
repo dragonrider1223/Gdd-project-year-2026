@@ -18,6 +18,10 @@ var imageScaleTime:float = 0.1; #should be 0.1 to make it take 0.1 second to sca
 var currentImageScaleTime:float = 1;
 var rotateAmount:float = 0.1;
 
+#cursor stuff
+var pick = preload("res://Cursor/CursorSpace 2.png")
+var normal = preload("res://Cursor/CursorsSpace.png")
+
 
 func _on_static_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if  event is InputEventMouseButton and event.pressed:
@@ -49,12 +53,14 @@ func _on_static_body_2d_mouse_entered() -> void:
 	initialImageScale = image.scale
 	targetImageScale = Vector2(1.2,1.2)
 	currentImageScaleTime = 0;
+	Input.set_custom_mouse_cursor(pick, Input.CURSOR_ARROW, Vector2(5, 5))
 
 
 func _on_static_body_2d_mouse_exited() -> void:
 	initialImageScale = image.scale
 	targetImageScale = Vector2(1,1)
 	currentImageScaleTime = 0;
+	Input.set_custom_mouse_cursor(normal, Input.CURSOR_ARROW, Vector2(25, 25))
 
 
 func _on_rigid_body_2d_body_entered(body: Node) -> void:

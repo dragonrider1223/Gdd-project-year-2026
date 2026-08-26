@@ -23,6 +23,8 @@ PlanetResourceHolder="*uid://trkc1qf4pv4q"
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://bt7tc6vctj8r2"
+mouse_cursor/custom_image_hotspot=Vector2(25, 25)
 
 [dotnet]
 

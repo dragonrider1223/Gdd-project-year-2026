@@ -16,6 +16,11 @@ var dead = false;
 
 var startPos;
 
+
+#cursor stuff
+var hit = preload("res://Cursor/CursorSpace 1.png")
+var normal = preload("res://Cursor/CursorsSpace.png")
+
 func _on_static_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if  event is InputEventMouseButton and event.pressed:
 		if(!dead):
@@ -79,6 +84,7 @@ func _on_shake_timer_timeout() -> void:
 		
 
 func death():
+	Input.set_custom_mouse_cursor(normal, Input.CURSOR_ARROW, Vector2(25, 25))
 	PlanetResourceHolder.musicManager.FadeVolume(false)
 	$DeathSFX.play(0)
 	dead = true
@@ -89,3 +95,11 @@ func death():
 
 func _on_death_t_imer_timeout() -> void:
 	queue_free()
+
+
+func _on_static_body_2d_mouse_entered() -> void:
+	Input.set_custom_mouse_cursor(hit, Input.CURSOR_ARROW,Vector2(25, 25))
+
+
+func _on_static_body_2d_mouse_exited() -> void:
+	Input.set_custom_mouse_cursor(normal, Input.CURSOR_ARROW, Vector2(25, 25))

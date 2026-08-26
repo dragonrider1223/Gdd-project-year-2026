@@ -96,5 +96,7 @@ position = Vector2(6, 38)
 stream = ExtResource("5_n1bor")
 
 [connection signal="input_event" from="Icon/StaticBody2D" to="." method="_on_static_body_2d_input_event"]
+[connection signal="mouse_entered" from="Icon/StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Icon/StaticBody2D" to="." method="_on_static_body_2d_mouse_exited"]
 [connection signal="timeout" from="DeathTImer" to="." method="_on_death_t_imer_timeout"]
 [connection signal="timeout" from="shakeTimer" to="." method="_on_shake_timer_timeout"]
