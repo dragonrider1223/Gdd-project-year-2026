@@ -25,5 +25,6 @@ func _process(delta: float) -> void:
 
 func spawn():
 	$Siren.play(0)
+	PlanetResourceHolder.musicManager.FadeVolume(true)
 	var newEnemy = enemy.instantiate()
 	self.add_child(newEnemy)

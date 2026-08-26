@@ -57,8 +57,7 @@ shape = SubResource("CircleShape2D_pq8jx")
 
 [node name="EnemyManager" type="Node2D" parent="." unique_id=56755281]
 script = ExtResource("7_7iu0o")
-maxTime = 1
-minTime = 1
+minTime = 45
 
 [node name="EnemySpawnTimer" type="Timer" parent="EnemyManager" unique_id=766392907]
 wait_time = 10.0

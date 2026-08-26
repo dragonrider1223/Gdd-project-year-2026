@@ -88,11 +88,11 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=948820431]
-position = Vector2(764, 1250)
+position = Vector2(-1, -4)
 stream = ExtResource("5_biruh")
 
 [node name="DeathSFX" type="AudioStreamPlayer2D" parent="." unique_id=379866061]
-position = Vector2(1528, 2500)
+position = Vector2(6, 38)
 stream = ExtResource("5_n1bor")
 
 [connection signal="input_event" from="Icon/StaticBody2D" to="." method="_on_static_body_2d_input_event"]

@@ -35,3 +35,5 @@ static var menPerHouse:int = 1
 
 static var EnemyBar = null;
 static var enemyManager = null;
+
+static var musicManager = null

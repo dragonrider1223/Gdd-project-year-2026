@@ -18,7 +18,8 @@ var startPos;
 
 func _on_static_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if  event is InputEventMouseButton and event.pressed:
-		damage();
+		if(!dead):
+			damage();
 
 func damage():
 	health-=1;
@@ -78,6 +79,7 @@ func _on_shake_timer_timeout() -> void:
 		
 
 func death():
+	PlanetResourceHolder.musicManager.FadeVolume(false)
 	$DeathSFX.play(0)
 	dead = true
 	$DeathTImer.start()
