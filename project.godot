@@ -13,7 +13,7 @@ config_version=5
 config/name="PlanetIdler"
 run/main_scene="uid://c48ism0vxmywd"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://ydayna36epeu"
 
 [autoload]
 
@@ -21,8 +21,8 @@ PlanetResourceHolder="*uid://trkc1qf4pv4q"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://bt7tc6vctj8r2"
 mouse_cursor/custom_image_hotspot=Vector2(25, 25)
 

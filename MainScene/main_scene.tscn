@@ -97,6 +97,7 @@ script = ExtResource("6_25os6")
 [node name="Music" type="AudioStreamPlayer2D" parent="MusicManager" unique_id=743544120]
 stream = ExtResource("7_1lkik")
 autoplay = true
+parameters/looping = true
 
 [node name="FadeTimer" type="Timer" parent="MusicManager" unique_id=2124795793]
 one_shot = true
